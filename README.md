@@ -23,3 +23,14 @@ Runner releases:
 ## Contribute
 
 We accept contributions in the form of issues and pull requests. The runner typically requires changes across the entire system and we aim for issues in the runner to be entirely self contained and fixable here. Therefore, we will primarily handle bug issues opened in this repo and we kindly request you to create all feature and enhancement requests on the [GitHub Feedback](https://github.com/community/community/discussions/categories/actions-and-packages) page. [Read more about our guidelines here](docs/contribute.md) before contributing.
+
+
+Docker Image Build command
+docker build --no-cache -t shankershawn/github-actions-runner --build-arg TARGETOS=linux --build-arg TARGETARCH=arm --build-arg RUNNER_VERSION=2.315.0 .
+
+Docker Image Run command
+Get token from https://github.com/shankershawn/utility-scheduler/settings/actions/runners/new and store it securely
+docker run -tid --restart always --name github-actions-runner -e TOKEN=<token> shankershawn/github-actions-runner
+
+Remove runner
+docker exec -ti github-actions-runner ./config.sh remove --unattended --token <token>
